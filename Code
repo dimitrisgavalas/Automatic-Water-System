@@ -1,0 +1,58 @@
+#include <LiquidCrystal.h> //βιβλιοθήκη για την οθόνη
+
+int tmpPin = A0; //Θέση σένσορα θερμοκρασίας
+int motorPin = 9;  //θέση DC moter
+int ledRed = 11;  //θέση red led
+int ledGreen = 10;  //θέση green led
+
+LiquidCrystal lcd(2, 3, 4, 5, 6, 7); //μεσα στην παρένθηση βάζουμε τις θύρες που συνδέονται με το RS, E, Db4-DB7 αντίστοιχα
+
+
+void setup()
+{
+  
+  Serial.begin(9600);      //moter data rate
+  lcd.begin(16, 2); // stiles kai grammes 
+  lcd.print("   Welcome!!!"); //Τυπώνουμε μήνυμα
+  delay(2000); //καθυστέρηση 2 δ
+  lcd.clear(); //σβήνουν όλα στην οθόνη
+  lcd.setCursor(0,0);//θέση που θα τυπωθει το επόμενο μηνυμα
+  lcd.print("Automatic Plant"); //Τυπώνουμε μήνυμα
+  lcd.setCursor(0,1); //θέση που θα εκτυπωθεί το μήνυμα
+  lcd.print("Water System"); //Εκτύπωση μηνύματος
+  delay(2000);
+  lcd.clear();
+  lcd.print("Temp:");
+  lcd.setCursor(0,1);
+  lcd.print("WaterPump:");
+  
+  pinMode(motorPin,OUTPUT);  
+  
+}
+
+void loop()
+{
+  int value = analogRead(tmpPin); // analog τιμη απο θέση Α0
+  float Temp = (5.0 * value * 100) / 1024;  //υπολογισμός θερμοκρασίας
+  lcd.setCursor(6,0); //εδω θα εκτυπωθεί η θερμοκρασία
+  lcd.print(Temp);      
+  lcd.setCursor(11,1); //εδω θα εκτυπωθεί το on off
+  
+  if(Temp > 90){
+    
+    digitalWrite(motorPin,HIGH); //Αν η θερμοκρασία είναι πάνω απο 50 βαθμούς ενεργοποιείται το μοτέρ και ποτίζονται τα φυτά.
+    digitalWrite(ledGreen,HIGH);//ανοίγει το πράσινο φωτάκι
+    digitalWrite(ledRed,LOW);//κλείνει το κόκκινο φωτάκι
+    lcd.print("ON "); //Εκτυπώνεται πωσ η αντλία είναι ανοικτή
+    
+  }else if(Temp <= 90){
+    
+    digitalWrite(motorPin,LOW);
+    digitalWrite(ledGreen,LOW);//κλείνει το πράσινο φωτάκι
+    digitalWrite(ledRed,HIGH);//ανοίγει το κόκκινο φωτάκι
+    lcd.print("OFF"); //Εκτυπώνεται πωσ η αντλία είναι κλειστή
+    
+  }
+  delay(1000); 
+}
+  
