@@ -48,13 +48,13 @@ void loop()
   lcd.print(Temp1);      
   lcd.setCursor(4,0);                            //σε αυτη την θέση θα εκτυπωθεί το on off  
   
-  if(Temp1 > 90){
+  if(Temp1 > 46){
     
     digitalWrite(motorPin1,HIGH);      //Αν η θερμοκρασία είναι πάνω απο x βαθμούς ενεργοποιείται το μοτέρ και ποτίζονται τα φυτά.
     digitalWrite(ledGreen1,HIGH);     //ανοίγει το πράσινο φωτάκι
     lcd.print("ON ");                //Εκτυπώνεται πωσ η αντλία είναι ανοικτή
     
-  }else if(Temp1 <= 90){
+  }else if(Temp1 <= 46){
     
     digitalWrite(motorPin1,LOW);   //κλείνει το μοτέρ
     digitalWrite(ledGreen1,LOW);  //κλείνει το πράσινο φωτάκι
@@ -67,13 +67,13 @@ void loop()
   lcd.print(Temp2);      
   lcd.setCursor(4,1);                             //εδω θα εκτυπωθεί το on off
   
-  if(Temp2 > 80){
+  if(Temp2 > 32){
     
     digitalWrite(motorPin2,HIGH);     //Αν η θερμοκρασία είναι πάνω απο x βαθμούς ενεργοποιείται το μοτέρ και ποτίζονται τα φυτά.
     digitalWrite(ledGreen2,HIGH);    //ανοίγει το πράσινο φωτάκι
     lcd.print("ON ");               //Εκτυπώνεται πωσ η αντλία είναι ανοικτή
  
-  }else if(Temp2 <= 80){
+  }else if(Temp2 <= 32){
     
     digitalWrite(motorPin2,LOW);
     digitalWrite(ledGreen2,LOW);   //κλείνει το πράσινο φωτάκι
