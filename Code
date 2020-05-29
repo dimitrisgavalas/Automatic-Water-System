@@ -42,11 +42,11 @@ void setup()
 
 void loop()
 {
-  int value1 = analogRead(tmpPin1);            // analog τιμη απο θέση Α0
-  float Temp1 = (5.0 * value1 * 100) / 1024;  //υπολογισμός θερμοκρασίας
-  lcd.setCursor(12,0);                       //σε αυτη την θέση θα εκτυπωθεί η θερμοκρασία
+  int value1 = analogRead(tmpPin1);                  // analog τιμη απο θέση Α0
+  float Temp1 = ((5.0 * value1 * 100) / 1024)-50;   //υπολογισμός θερμοκρασίας
+  lcd.setCursor(12,0);                             //σε αυτη την θέση θα εκτυπωθεί η θερμοκρασία
   lcd.print(Temp1);      
-  lcd.setCursor(4,0);                      //σε αυτη την θέση θα εκτυπωθεί το on off  
+  lcd.setCursor(4,0);                            //σε αυτη την θέση θα εκτυπωθεί το on off  
   
   if(Temp1 > 90){
     
@@ -61,11 +61,11 @@ void loop()
     lcd.print("OFF");            //Εκτυπώνεται πωσ η αντλία είναι κλειστή
   }
   
-  int value2 = analogRead(tmpPin2);            // analog τιμη απο θέση Α0
-  float Temp2 = (5.0 * value2 * 100) / 1024;  //υπολογισμός θερμοκρασίας
-  lcd.setCursor(12,1);                       //εδω θα εκτυπωθεί η θερμοκρασία
+  int value2 = analogRead(tmpPin2);                   // analog τιμη απο θέση Α0
+  float Temp2 = ((5.0 * value2 * 100) / 1024)-50;    //υπολογισμός θερμοκρασίας
+  lcd.setCursor(12,1);                              //εδω θα εκτυπωθεί η θερμοκρασία
   lcd.print(Temp2);      
-  lcd.setCursor(4,1);                      //εδω θα εκτυπωθεί το on off
+  lcd.setCursor(4,1);                             //εδω θα εκτυπωθεί το on off
   
   if(Temp2 > 80){
     
