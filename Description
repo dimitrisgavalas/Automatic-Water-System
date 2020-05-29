@@ -12,3 +12,10 @@
 από αυτή που έχουμε θέσει τότε ενεργοποιείτε το μοτέρ ,το πράσινο led και εκτυπώνεται στην οθόνη ότι η αντλία νερού είναι ανοικτή.
 Αντιθέτως αν η θερμοκρασία είναι χαμηλότερη από αυτή που έχουμε θέσει το μοτέρ και το led απενεργοποιούνται  και ενεργοποιείται 
 το κόκκινο led και εκτυπώνεται στην οθόνη ότι η αντλία νερού είναι κλειστή.
+
+Βοηθητικά λινκ:
+https://www.arduino.cc/en/Reference/LiquidCrystalConstructor
+https://www.arduino.cc/en/Tutorial/HelloWorld?from=Tutorial.LiquidCrystal
+https://www.arduino.cc/reference/en/language/functions/communication/serial/begin?from=Reference.BeginSerial
+http://www.ardumotive.com/how-to-use-an-lcd-dislpay-gr.html#
+http://www.ardumotive.com/how-to-drive-a-dc-motor-with-transistor.html
