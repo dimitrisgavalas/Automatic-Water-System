@@ -1,11 +1,11 @@
 #include <LiquidCrystal.h> //βιβλιοθήκη για την οθόνη
 
-int tmpPin1 = A0;
-int tmpPin2 = A1;//Θέση σένσορα θερμοκρασίας
-int motorPin1 = 9;  //θέση DC moter
-int motorPin2 = 8;  //θέση DC moter
-int ledGreen2 = 11;  //θέση red led
-int ledGreen1 = 10;  //θέση green led
+int tmpPin1 = A0;           //Θέση σένσορα θερμοκρασίας
+int tmpPin2 = A1;          //Θέση σένσορα θερμοκρασίας
+int motorPin1 = 9;        //θέση DC moter
+int motorPin2 = 8;       //θέση DC moter
+int ledGreen2 = 11;     //θέση red led
+int ledGreen1 = 10;    //θέση green led
 
 LiquidCrystal lcd(2, 3, 4, 5, 6, 7); //μεσα στην παρένθηση βάζουμε τις θύρες που συνδέονται με το RS, E, Db4-DB7 πάνω στην οθόνη αντίστοιχα
 
@@ -13,21 +13,21 @@ LiquidCrystal lcd(2, 3, 4, 5, 6, 7); //μεσα στην παρένθηση βά
 void setup()
 {
   
-  Serial.begin(9600);      //moter data rate
-  lcd.begin(16, 2); // stiles kai grammes 
-  lcd.print("   Welcome!!!"); //Τυπώνουμε μήνυμα
-  delay(2000); //καθυστέρηση 2 δ
-  lcd.clear(); //σβήνουν όλα στην οθόνη
-  lcd.setCursor(0,0);//θέση που θα τυπωθει το επόμενο μηνυμα
-  lcd.print("Automatic Plant"); //Τυπώνουμε μήνυμα
-  lcd.setCursor(0,1); //θέση που θα εκτυπωθεί το μήνυμα
-  lcd.print("Water System"); //Εκτύπωση μηνύματος
+  Serial.begin(9600);                //moter data rate
+  lcd.begin(16, 2);                 // stiles kai grammes 
+  lcd.print("   Welcome!!!");      //Τυπώνουμε μήνυμα
+  delay(2000);                    //καθυστέρηση 2 δ
+  lcd.clear();                   //σβήνουν όλα στην οθόνη
+  lcd.setCursor(0,0);           //θέση που θα τυπωθει το επόμενο μηνυμα
+  lcd.print("Automatic Plant");   //Τυπώνουμε μήνυμα
+  lcd.setCursor(0,1);            //θέση που θα εκτυπωθεί το μήνυμα
+  lcd.print("Water System");    //Εκτύπωση μηνύματος
   delay(2000);
   lcd.clear();
   
   lcd.setCursor(8,0);
   lcd.print("T1:");
-  lcd.setCursor(0,0); //θέση που θα εκτυπωθεί το μήνυμα
+  lcd.setCursor(0,0); 
   lcd.print("P1:");
   
   lcd.setCursor(8,1);
@@ -42,42 +42,42 @@ void setup()
 
 void loop()
 {
-  int value1 = analogRead(tmpPin1); // analog τιμη απο θέση Α0
+  int value1 = analogRead(tmpPin1);            // analog τιμη απο θέση Α0
   float Temp1 = (5.0 * value1 * 100) / 1024;  //υπολογισμός θερμοκρασίας
-  lcd.setCursor(12,0); //εδω θα εκτυπωθεί η θερμοκρασία
+  lcd.setCursor(12,0);                       //σε αυτη την θέση θα εκτυπωθεί η θερμοκρασία
   lcd.print(Temp1);      
-  lcd.setCursor(4,0); //εδω θα εκτυπωθεί το on off  
+  lcd.setCursor(4,0);                      //σε αυτη την θέση θα εκτυπωθεί το on off  
   
   if(Temp1 > 90){
     
-    digitalWrite(motorPin1,HIGH); //Αν η θερμοκρασία είναι πάνω απο x βαθμούς ενεργοποιείται το μοτέρ και ποτίζονται τα φυτά.
-    digitalWrite(ledGreen1,HIGH);//ανοίγει το πράσινο φωτάκι
-    lcd.print("ON "); //Εκτυπώνεται πωσ η αντλία είναι ανοικτή
+    digitalWrite(motorPin1,HIGH);      //Αν η θερμοκρασία είναι πάνω απο x βαθμούς ενεργοποιείται το μοτέρ και ποτίζονται τα φυτά.
+    digitalWrite(ledGreen1,HIGH);     //ανοίγει το πράσινο φωτάκι
+    lcd.print("ON ");                //Εκτυπώνεται πωσ η αντλία είναι ανοικτή
     
   }else if(Temp1 <= 90){
     
-    digitalWrite(motorPin1,LOW);
-    digitalWrite(ledGreen1,LOW);//κλείνει το πράσινο φωτάκι
-    lcd.print("OFF"); //Εκτυπώνεται πωσ η αντλία είναι κλειστή
+    digitalWrite(motorPin1,LOW);   //κλείνει το μοτέρ
+    digitalWrite(ledGreen1,LOW);  //κλείνει το πράσινο φωτάκι
+    lcd.print("OFF");            //Εκτυπώνεται πωσ η αντλία είναι κλειστή
   }
   
-  int value2 = analogRead(tmpPin2); // analog τιμη απο θέση Α0
+  int value2 = analogRead(tmpPin2);            // analog τιμη απο θέση Α0
   float Temp2 = (5.0 * value2 * 100) / 1024;  //υπολογισμός θερμοκρασίας
-  lcd.setCursor(12,1); //εδω θα εκτυπωθεί η θερμοκρασία
+  lcd.setCursor(12,1);                       //εδω θα εκτυπωθεί η θερμοκρασία
   lcd.print(Temp2);      
-  lcd.setCursor(4,1); //εδω θα εκτυπωθεί το on off
+  lcd.setCursor(4,1);                      //εδω θα εκτυπωθεί το on off
   
   if(Temp2 > 80){
     
-    digitalWrite(motorPin2,HIGH); //Αν η θερμοκρασία είναι πάνω απο x βαθμούς ενεργοποιείται το μοτέρ και ποτίζονται τα φυτά.
-    digitalWrite(ledGreen2,HIGH);//ανοίγει το πράσινο φωτάκι
-    lcd.print("ON "); //Εκτυπώνεται πωσ η αντλία είναι ανοικτή
+    digitalWrite(motorPin2,HIGH);     //Αν η θερμοκρασία είναι πάνω απο x βαθμούς ενεργοποιείται το μοτέρ και ποτίζονται τα φυτά.
+    digitalWrite(ledGreen2,HIGH);    //ανοίγει το πράσινο φωτάκι
+    lcd.print("ON ");               //Εκτυπώνεται πωσ η αντλία είναι ανοικτή
  
   }else if(Temp2 <= 80){
     
     digitalWrite(motorPin2,LOW);
-    digitalWrite(ledGreen2,LOW);//κλείνει το πράσινο φωτάκι
-    lcd.print("OFF"); //Εκτυπώνεται πωσ η αντλία είναι κλειστή
+    digitalWrite(ledGreen2,LOW);   //κλείνει το πράσινο φωτάκι
+    lcd.print("OFF");             //Εκτυπώνεται πωσ η αντλία είναι κλειστή
     
   }
   delay(1000); 
