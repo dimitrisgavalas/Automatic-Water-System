@@ -7,7 +7,7 @@ int motorPin2 = 8;  //θέση DC moter
 int ledGreen2 = 11;  //θέση red led
 int ledGreen1 = 10;  //θέση green led
 
-LiquidCrystal lcd(2, 3, 4, 5, 6, 7); //μεσα στην παρένθηση βάζουμε τις θύρες που συνδέονται με το RS, E, Db4-DB7 αντίστοιχα
+LiquidCrystal lcd(2, 3, 4, 5, 6, 7); //μεσα στην παρένθηση βάζουμε τις θύρες που συνδέονται με το RS, E, Db4-DB7 πάνω στην οθόνη αντίστοιχα
 
 
 void setup()
